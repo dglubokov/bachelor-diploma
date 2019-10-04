@@ -1,0 +1,80 @@
+%%% Преамбула %%%
+
+\usepackage{fontspec} % XeTeX
+\usepackage{xunicode} % Unicode для XeTeX
+\usepackage{xltxtra}  % Верхние и нижние индексы
+\usepackage{pdfpages} % Вставка PDF
+
+\usepackage{amssymb,amsfonts,amsmath} % Математика
+
+\usepackage{enumerate} % Тонкая настройка списков
+\usepackage{indentfirst} % Красная строка после заголовка
+\usepackage{float} % Расширенное управление плавающими объектами
+\usepackage{multirow} % Сложные таблицы
+
+
+% Шрифты, xelatex
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman}
+\newfontfamily\cyrillicfont{Times New Roman}
+\setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
+
+% Русский язык
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+
+% Отступы у страниц
+\usepackage{geometry}
+\geometry{left=3cm}
+\geometry{right=1.5cm}
+\geometry{top=2cm}
+\geometry{bottom=2cm}
+
+\renewcommand{\baselinestretch}{1.5} % Полуторный межстрочный интервал
+\parindent 1.25cm % Абзацный отступ
+
+% Пути к каталогам с изображениями
+\usepackage{graphicx} % Вставка картинок и дополнений
+
+% Формат подрисуночных записей
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+
+
+% СОДЕРЖАНИЕ
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeUppercase}
+\renewcommand{\cftsecfont}{\hspace{0pt}} 			  % Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
+\setcounter{tocdepth}{3}                            % Глубина оглавления, до subsubsection
+
+
+% Заголовки секций в оглавлении в верхнем регистре
+\usepackage{textcase}
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{
+    \expandafter\ifx\csname l@#1\endcsname\l@section
+        \expandafter\@firstoftwo
+    \else
+        \expandafter\@secondoftwo
+    \fi
+    {\oldcontentsline{#1}{\MakeTextUppercase{#2}}}
+    {\oldcontentsline{#1}{#2}}
+}
+\makeatother
+
+% Оформление заголовков
+\usepackage[compact,explicit]{titlesec}
+\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
+\titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
+\titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
+\titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
+
+% Секции без номеров (введение, заключение...), вместо section*{}
+\newcommand{\anonsection}[1]{
+    \phantomsection % Корректный переход по ссылкам в содержании
+    \paragraph{\centerline{{#1}}\vspace{1.5em}}
+    \addcontentsline{toc}{section}{\uppercase{#1}}
+}
