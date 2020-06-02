@@ -1,5 +1,8 @@
 %%% Преамбула %%%
 
+% Русский и английский
+\usepackage[english,russian]{babel}
+
 \usepackage{fontspec} % XeTeX
 \usepackage{xunicode} % Unicode для XeTeX
 \usepackage{xltxtra}  % Верхние и нижние индексы
@@ -12,16 +15,7 @@
 \usepackage{float} % Расширенное управление плавающими объектами
 \usepackage{multirow} % Сложные таблицы
 
-
-% Шрифты, xelatex
-\defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Times New Roman}
-\newfontfamily\cyrillicfont{Times New Roman}
-\setmonofont{FreeMono} % Моноширинный шрифт для оформления кода
-
-% Русский язык
-\usepackage{polyglossia}
-\setdefaultlanguage{russian}
 
 % Отступы у страниц
 \usepackage{geometry}
@@ -36,9 +30,12 @@
 % Пути к каталогам с изображениями
 \usepackage{graphicx} % Вставка картинок и дополнений
 
-% Формат подрисуночных записей
-\usepackage{chngcntr}
-\counterwithin{figure}{section}
+% Формат подрисуночных надписей
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defffis}{ -- } % Разделитель
+\captionsetup[figure]{justification=centering, labelsep=defffis, format=plain} % Подпись рисунка по центру
+\captionsetup[table]{justification=raggedright, labelsep=defffis, format=plain, singlelinecheck=false} % Подпись таблицы слева
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
 
 
 % СОДЕРЖАНИЕ
@@ -67,7 +64,7 @@
 
 % Оформление заголовков
 \usepackage[compact,explicit]{titlesec}
-\titleformat{\section}{}{}{12.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1.5em}}
+\titleformat{\section}{}{}{8.5mm}{\centering{\thesection\quad\MakeTextUppercase{#1}}\vspace{1em}}
 \titleformat{\subsection}[block]{\vspace{1em}}{}{12.5mm}{\thesubsection\quad#1\vspace{1em}}
 \titleformat{\subsubsection}[block]{\vspace{1em}\normalsize}{}{12.5mm}{\thesubsubsection\quad#1\vspace{1em}}
 \titleformat{\paragraph}[block]{\normalsize}{}{12.5mm}{\MakeTextUppercase{#1}}
@@ -77,4 +74,13 @@
     \phantomsection % Корректный переход по ссылкам в содержании
     \paragraph{\centerline{{#1}}\vspace{1.5em}}
     \addcontentsline{toc}{section}{\uppercase{#1}}
+}
+
+% Пользовательские функции
+\newcommand{\addimg}[4]{ % Добавление одного рисунка
+    \begin{figure}
+        \centering
+        \includegraphics[width=#2\linewidth]{#1}
+        \caption{#3} \label{#4}
+    \end{figure}
 }
