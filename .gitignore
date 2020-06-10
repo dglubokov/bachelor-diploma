@@ -5,6 +5,7 @@
 *.gz
 *.png
 *.jpg
+*.jpeg
 *.bcf
 *.xml
 *.bbl

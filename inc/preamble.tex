@@ -14,6 +14,7 @@
 \usepackage{indentfirst} % Красная строка после заголовка
 \usepackage{float} % Расширенное управление плавающими объектами
 \usepackage{multirow} % Сложные таблицы
+\usepackage{rotating} % Поворот
 
 \setmainfont{Times New Roman}
 
@@ -84,3 +85,10 @@
         \caption{#3} \label{#4}
     \end{figure}
 }
+
+% Оформление библиографии и подрисуночных записей через точку
+\makeatletter
+\renewcommand*{\@biblabel}[1]{\hfill#1.}
+\makeatother
+
+\setcounter{page}{2}
