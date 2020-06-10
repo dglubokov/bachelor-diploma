@@ -1,2 +1,2 @@
 # bachelor-diploma
-My bachleor diploma
+My bachelor diploma
