@@ -7,3 +7,5 @@
 *.xml
 *.bbl
 *.blg
+*.nav
+*.snm
