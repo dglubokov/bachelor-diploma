@@ -9,14 +9,11 @@
 \usepackage{pdfpages} % Вставка PDF
 
 \usepackage{amssymb,amsfonts,amsmath} % Математика
-
 \usepackage{enumerate} % Тонкая настройка списков
 \usepackage{indentfirst} % Красная строка после заголовка
 \usepackage{float} % Расширенное управление плавающими объектами
-\usepackage{multirow} % Сложные таблицы
-\usepackage{rotating} % Поворот
 
-\setmainfont{Times New Roman}
+\setmainfont{Times New Roman} % Установка нужного шрифта
 
 % Отступы у страниц
 \usepackage{geometry}
@@ -28,8 +25,24 @@
 \renewcommand{\baselinestretch}{1.5} % Полуторный межстрочный интервал
 \parindent 1.25cm % Абзацный отступ
 
-% Пути к каталогам с изображениями
+\sloppy             % Избавляемся от переполнений
+\hyphenpenalty=1000 % Частота переносов
+\clubpenalty=10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty=10000 % Запрещаем разрыв страницы после последней строки абзаца
+
+% Списки
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=12.7mm} % Отступы в списках
+
+\makeatletter
+    \AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep}                           % Нет отступов между пунктами списка
+\renewcommand{\labelitemi}{--}                % Маркер списка --
+
+% Изображения
 \usepackage{graphicx} % Вставка картинок и дополнений
+\graphicspath{{./img/}} % Путь к картинкам
 
 % Формат подрисуночных надписей
 \RequirePackage{caption}
@@ -39,7 +52,7 @@
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}} % Имя фигуры
 
 
-% СОДЕРЖАНИЕ
+% Содержание
 \usepackage{tocloft}
 \renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth}\MakeUppercase}
 \renewcommand{\cftsecfont}{\hspace{0pt}} 			  % Имена секций в содержании не жирным шрифтом
@@ -91,4 +104,4 @@
 \renewcommand*{\@biblabel}[1]{\hfill#1.}
 \makeatother
 
-\setcounter{page}{2}
+\setcounter{page}{3}
